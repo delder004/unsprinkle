@@ -9,16 +9,17 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
           <source
             type="image/avif"
             srcset={[
-              src.replace('.jpg', '.avif'),
-              src.replace('.jpg', '@2x.avif'),
-              src.replace('.jpg', '@3x.avif'),
+              src.replace('.jpg', '.avif 1x'),
+              src.replace('.jpg', '@2x.avif 2x'),
+              src.replace('.jpg', '@3x.avif 3x'),
             ].join(", ")}
           />
           <source
-            type="image/jpg"
+            type="image/jpeg"
             srcset={[
-              src.replace('.jpg', '@2x.jpg'),
-              src.replace('.jpg', '@3x.jpg'),
+              src.replace('.jpg', '.jpg 1x'),
+              src.replace('.jpg', '@2x.jpg 2x'),
+              src.replace('.jpg', '@3x.jpg 3x'),
             ].join(", ")}
           />
           <Image src={src} />
@@ -50,26 +51,20 @@ const Image = styled.img`
 `;
 
 const Tags = styled.ul`
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 8px;
-  width: 100%;
+  display: flex;
+  gap: 8px;
 `;
 
 const Tag = styled.li`
   padding: 4px 8px;
+  white-space: nowrap;
   background: var(--color-gray-300);
   font-size: 0.875rem;
   font-weight: 475;
   color: var(--color-gray-800);
-  white-space: nowrap;
-  display: inline;
-  margin-right: 8px;
-
-  ::last-of-type {
-    text-overflow: ellipsis;
+  &:last-child {
     overflow: hidden;
-    // width: 100%;
+    text-overflow: ellipsis;
   }
 `;
 
